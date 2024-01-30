@@ -1,7 +1,7 @@
-package com.htht.business.thirty.controller;
+package com.htht.business.thirty.equip.controller;
 
 import cn.dev33.satoken.annotation.SaIgnore;
-import com.htht.business.thirty.request.utils.ThirdEquipUtils;
+import com.htht.business.thirty.equip.utils.ThirdEquipUtils;
 import com.htht.common.core.domain.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;

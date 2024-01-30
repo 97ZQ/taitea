@@ -1,4 +1,4 @@
-package com.htht.business.thirty.request.utils;
+package com.htht.business.thirty.equip.utils;
 
 import com.htht.common.exception.ServiceException;
 import com.htht.common.utils.DateUtils;
@@ -60,7 +60,7 @@ public class ThirdEquipUtils {
         });
         CommonResponse<LoginInfo> body = response.getBody();
         if (body == null) {
-            throw new ServiceException("获取登录信息失败");
+            throw new ServiceException("获取登录信息失败：" + response.toString());
         }
         return body.getData();
     }
@@ -82,7 +82,7 @@ public class ThirdEquipUtils {
         });
         CommonResponse<Page<Farm>> body = response.getBody();
         if (body == null) {
-            throw new ServiceException("获取农场列表失败");
+            throw new ServiceException("获取农场列表失败：" + response.toString());
         }
         return body.getData();
     }
@@ -126,7 +126,7 @@ public class ThirdEquipUtils {
         });
         CommonResponse<List<DeviceSensor>> body = response.getBody();
         if (body == null) {
-            throw new ServiceException("获取设备传感器数据失败");
+            throw new ServiceException("获取设备传感器数据失败：" + response.toString());
         }
         return body.getData();
     }
@@ -147,7 +147,7 @@ public class ThirdEquipUtils {
         });
         CommonResponse<SoilDevice> body = response.getBody();
         if (body == null) {
-            throw new ServiceException("获取管式土壤墒情仪数据失败");
+            throw new ServiceException("获取管式土壤墒情仪数据失败：" + response.toString());
         }
         return body.getData();
     }
@@ -173,9 +173,17 @@ public class ThirdEquipUtils {
         });
         CommonResponse<Page<InsectRecord>> body = response.getBody();
         if (body == null) {
-            throw new ServiceException("获取虫情运行记录失败");
+            throw new ServiceException("获取虫情运行记录失败：" + response.toString());
         }
         return body.getData();
     }
+
+//    private RestTemplate build() {
+//        RestTemplate restTemplate = new RestTemplate();
+//        DefaultUriBuilderFactory uriFactory = new DefaultUriBuilderFactory("http://www.farm-iot.cn:8089");
+//        uriFactory.setEncodingMode(DefaultUriBuilderFactory.EncodingMode.URI_COMPONENT);  // for backwards compatibility..
+//        restTemplate.setUriTemplateHandler(uriFactory);
+//        return restTemplate;
+//    }
 
 }

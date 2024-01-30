@@ -1,4 +1,4 @@
-package com.htht.business.thirty.request.utils;
+package com.htht.business.thirty.equip.utils;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonFormat;

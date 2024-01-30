@@ -1,4 +1,4 @@
-package com.htht.business.thirty.request.utils;
+package com.htht.business.thirty.equip.utils;
 
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;

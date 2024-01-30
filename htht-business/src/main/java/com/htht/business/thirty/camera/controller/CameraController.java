@@ -8,7 +8,6 @@ import com.htht.common.core.domain.R;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -17,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
  * 摄像头
  */
 @SaIgnore
-@RestController
+//@RestController
 @RequestMapping("/third/video")
 @RequiredArgsConstructor
 public class CameraController {
