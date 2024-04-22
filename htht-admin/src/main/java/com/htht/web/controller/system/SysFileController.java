@@ -1,5 +1,6 @@
 package com.htht.web.controller.system;
 
+import cn.dev33.satoken.annotation.SaIgnore;
 import com.htht.common.core.controller.BaseController;
 import com.htht.common.core.domain.R;
 import com.htht.system.domain.SysFile;
@@ -21,6 +22,7 @@ import java.io.IOException;
 @RequestMapping(value = "/system/file")
 @RestController
 @RequiredArgsConstructor
+@SaIgnore
 public class SysFileController extends BaseController {
 
     private final ISysFileService iSysFileService;

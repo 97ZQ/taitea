@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htht.business.app.mapper.AppDbPolicyTeaStandardMapper">
+
+    <resultMap id="BaseResultMap" type="com.htht.business.app.domain.AppDbPolicyTeaStandard">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="policyContent" column="policy_content" jdbcType="VARCHAR"/>
+            <result property="publishTime" column="publish_time" jdbcType="DATE"/>
+            <result property="publisher" column="publisher" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,title,policy_content,
+        publish_time,publisher
+    </sql>
+</mapper>

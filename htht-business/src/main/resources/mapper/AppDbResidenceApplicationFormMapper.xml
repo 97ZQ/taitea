@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htht.business.app.mapper.AppDbResidenceApplicationFormMapper">
+
+    <resultMap id="BaseResultMap" type="com.htht.business.app.domain.AppDbResidenceApplicationForm">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="enterpriseName" column="enterprise_name" jdbcType="VARCHAR"/>
+            <result property="enterpriseType" column="enterprise_type" jdbcType="INTEGER"/>
+            <result property="chargePerson" column="charge_person" jdbcType="VARCHAR"/>
+            <result property="contactInfomation" column="contact_infomation" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,enterprise_name,enterprise_type,
+        charge_person,contact_infomation,status
+    </sql>
+</mapper>

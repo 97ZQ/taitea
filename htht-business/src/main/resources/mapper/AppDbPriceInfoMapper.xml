@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htht.business.app.mapper.AppDbPriceInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.htht.business.app.domain.AppDbPriceInfo">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="priceContent" column="price_content" jdbcType="VARCHAR"/>
+            <result property="contactPerson" column="contact_person" jdbcType="VARCHAR"/>
+            <result property="contactPhone" column="contact_phone" jdbcType="VARCHAR"/>
+            <result property="fileUrl" column="file_url" jdbcType="VARCHAR"/>
+            <result property="purchaseId" column="purchase_id" jdbcType="BIGINT"/>
+            <result property="pricePersonId" column="price_person_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,price_content,contact_person,
+        contact_phone,file_url,purchase_id,
+        price_person_id
+    </sql>
+</mapper>

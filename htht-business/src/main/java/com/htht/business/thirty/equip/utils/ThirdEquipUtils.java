@@ -13,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.annotation.PostConstruct;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,12 +51,13 @@ public class ThirdEquipUtils {
     }
 
     public static LoginInfo getLoginInfo() {
+        Map<String, String> mapOf = new HashMap<>();
+        mapOf.put("Username", "tscy");
+        mapOf.put("Password", "123456");
         RequestEntity<Map<String, String>> requestEntity = RequestEntity
             .post("http://www.farm-iot.cn:8089/api/Account/Login")
-            .body(Map.of(
-                "Username", "tscy",
-                "Password", "123456"
-            ));
+            .body(mapOf
+            );
         ResponseEntity<CommonResponse<LoginInfo>> response = REST_TEMPLATE.exchange(requestEntity, new ParameterizedTypeReference<CommonResponse<LoginInfo>>() {
         });
         CommonResponse<LoginInfo> body = response.getBody();
@@ -160,15 +162,15 @@ public class ThirdEquipUtils {
             .fromHttpUrl("http://www.farm-iot.cn:8089/api/Insect/GetRunRecord")
             .queryParam("AuthCode", getAuthCode())
             .toUriString();
+        Map<String, Object> mapOf = new HashMap<>();
+        mapOf.put("deviceId", devId);
+        mapOf.put("startTime", DateUtils.parseDateToStr("yyyy-MM-dd HH:mm:ss", startTime));
+        mapOf.put("endTime", DateUtils.parseDateToStr("yyyy-MM-dd HH:mm:ss", endTime));
+        mapOf.put("page", page);
+        mapOf.put("pageSize", pageSize);
         RequestEntity<Map<String, Object>> requestEntity = RequestEntity
             .post(uriString)
-            .body(Map.of(
-                "deviceId", devId,
-                "startTime", DateUtils.parseDateToStr("yyyy-MM-dd HH:mm:ss", startTime),
-                "endTime", DateUtils.parseDateToStr("yyyy-MM-dd HH:mm:ss", endTime),
-                "page", page,
-                "pageSize", pageSize
-            ));
+            .body(mapOf);
         ResponseEntity<CommonResponse<Page<InsectRecord>>> response = REST_TEMPLATE.exchange(requestEntity, new ParameterizedTypeReference<CommonResponse<Page<InsectRecord>>>() {
         });
         CommonResponse<Page<InsectRecord>> body = response.getBody();

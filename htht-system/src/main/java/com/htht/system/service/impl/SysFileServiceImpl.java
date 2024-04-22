@@ -75,7 +75,7 @@ public class SysFileServiceImpl extends ServiceImpl<SysFileMapper, SysFile>
         // 读到流中
         InputStream inputStream = new FileInputStream(file.getFilePath());// 文件的存放路径
         try {
-            response.reset();
+//            response.reset();
             response.setContentType("application/octet-stream");
             String filename = new File(file.getFilePath()).getName();
             response.addHeader("Content-Disposition", "attachment; filename=" + URLEncoder.encode(filename, "UTF-8"));

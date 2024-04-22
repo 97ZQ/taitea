@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htht.business.app.mapper.AppDbBrowishGreenPersonMapper">
+
+    <resultMap id="BaseResultMap" type="com.htht.business.app.domain.AppDbBrowishGreenPerson">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="browishGreenStatisticsId" column="browish_green_statistics_id" jdbcType="BIGINT"/>
+            <result property="browishGreenStatisticsName" column="browish_green_statistics_name" jdbcType="VARCHAR"/>
+            <result property="browishGreenFirstLevel" column="browish_green_first_level" jdbcType="VARCHAR"/>
+            <result property="browishGreenSecondLevel" column="browish_green_second_level" jdbcType="VARCHAR"/>
+            <result property="browishGreenStatisticsDate" column="browish_green_statistics_date" jdbcType="DATE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,browish_green_statistics_id,browish_green_statistics_name,
+        browish_green_first_level,browish_green_second_level,browish_green_statistics_date
+    </sql>
+</mapper>

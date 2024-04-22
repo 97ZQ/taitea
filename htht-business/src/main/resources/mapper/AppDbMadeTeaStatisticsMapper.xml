@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htht.business.app.mapper.AppDbMadeTeaStatisticsMapper">
+
+    <resultMap id="BaseResultMap" type="com.htht.business.app.domain.AppDbMadeTeaStatistics">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="greenTeaFirstLevel" column="green_tea_first_level" jdbcType="VARCHAR"/>
+            <result property="greenTeaSecondLevel" column="green_tea_second_level" jdbcType="VARCHAR"/>
+            <result property="redTeaFirstLevel" column="red_tea_first_level" jdbcType="VARCHAR"/>
+            <result property="redTeaSecondLevel" column="red_tea_second_level" jdbcType="VARCHAR"/>
+            <result property="finishedTeaStatisticsDate" column="finished_tea_statistics_date" jdbcType="DATE"/>
+            <result property="teaFactoryId" column="tea_factory_id" jdbcType="BIGINT"/>
+            <result property="teaId" column="tea_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,green_tea_first_level,green_tea_second_level,
+        red_tea_first_level,red_tea_second_level,finished_tea_statistics_date,
+        tea_factory_id,tea_id
+    </sql>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htht.business.app.mapper.AppDbBrowishGreenStatisticsMapper">
+
+    <resultMap id="BaseResultMap" type="com.htht.business.app.domain.AppDbBrowishGreenStatistics">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="time" column="time" jdbcType="DATE"/>
+            <result property="firstLevel" column="first_level" jdbcType="VARCHAR"/>
+            <result property="secondLevel" column="second_level" jdbcType="VARCHAR"/>
+            <result property="teaGardenId" column="tea_garden_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,time,first_level,
+        second_level,tea_garden_id
+    </sql>
+    <select id="getYearAndMonth" resultType="com.htht.business.app.domain.AppDbBrowishGreenStatistics">
+        select * from app_db_browish_green_statistics
+        where YEAR(time) = #{getYear} and MONTH(time) =  #{getMonth}
+        and tea_garden_id = #{teaId}
+    </select>
+</mapper>

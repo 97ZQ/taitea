@@ -17,7 +17,7 @@
         <spring-boot.version>2.7.13</spring-boot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
         <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
         <spring-boot.mybatis>2.2.2</spring-boot.mybatis>
         <springdoc.version>1.6.15</springdoc.version>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htht.business.app.mapper.AppDbMyTeaGardenMapper">
+
+    <resultMap id="BaseResultMap" type="com.htht.business.app.domain.AppDbMyTeaGarden">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="teaName" column="tea_name" jdbcType="VARCHAR"/>
+            <result property="teaIntroduce" column="tea_introduce" jdbcType="VARCHAR"/>
+            <result property="carouselMapOne" column="carousel_map_one" jdbcType="VARCHAR"/>
+            <result property="carouselMapTwo" column="carousel_map_two" jdbcType="VARCHAR"/>
+            <result property="teaOwnerId" column="tea_owner_id" jdbcType="BIGINT"/>
+            <result property="teaOwnerName" column="tea_owner_name" jdbcType="VARCHAR"/>
+            <result property="weatherStreet" column="weather_street" jdbcType="VARCHAR"/>
+            <result property="videoSurveillance" column="video_surveillance" jdbcType="VARCHAR"/>
+            <result property="teaOwnerPhone" column="tea_owner_phone" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,tea_name,tea_introduce,
+        carousel_map_one,carousel_map_two,tea_owner_id,
+        tea_owner_name,weather_street,video_surveillance,
+        tea_owner_phone
+    </sql>
+</mapper>

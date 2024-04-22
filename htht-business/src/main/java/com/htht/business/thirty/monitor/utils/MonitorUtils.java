@@ -14,10 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -56,15 +53,15 @@ public class MonitorUtils {
      */
     private static AccessTokenInfo getAccessToken() {
         try {
+            Map<String, List<String>> mapOf = new HashMap<>();
+            mapOf.put("appKey", Collections.singletonList("019350e04b414842a400d2697ff6c27d"));
+            mapOf.put("appSecret", Collections.singletonList("a47f6eb47d01e6addd40ee4cd56ed6f2"));
             RequestEntity<Map<String, List<String>>> requestEntity = RequestEntity
                 .post("https://open.ys7.com/api/lapp/token/get")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .body(
-                    CollectionUtils.toMultiValueMap(Map.of(
-                        //暂时写死
-                        "appKey", Collections.singletonList("019350e04b414842a400d2697ff6c27d"),
-                        "appSecret", Collections.singletonList("a47f6eb47d01e6addd40ee4cd56ed6f2")
-                        )
+                    CollectionUtils.toMultiValueMap(
+                        mapOf
                     )
                 );
             ResponseEntity<BaseResponse<AccessTokenInfo>> response = REST_TEMPLATE.exchange(requestEntity, new ParameterizedTypeReference<BaseResponse<AccessTokenInfo>>() {
@@ -92,7 +89,10 @@ public class MonitorUtils {
             return getVideoAddress(getAccessTokenFromRedis(), deviceSerial);
         } catch (Exception e) {
             log.error("获取播放地址失败：" + e.getMessage());
-            throw new ServiceException("获取播放地址失败");
+            if (e instanceof ServiceException) {
+                throw new ServiceException(e.getMessage());
+            }
+            throw new RuntimeException("获取播放地址失败");
         }
     }
 
@@ -100,15 +100,15 @@ public class MonitorUtils {
      * 获取播放地址
      */
     private static VideoAddress getVideoAddress(String accessToken, String deviceSerial) {
+        Map<String, List<String>> mapOf = new HashMap<>();
+        mapOf.put("accessToken", Collections.singletonList(accessToken));
+        mapOf.put("deviceSerial", Collections.singletonList(deviceSerial));
         RequestEntity<Map<String, List<String>>> requestEntity = RequestEntity
             .post("https://open.ys7.com/api/lapp/v2/live/address/get")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
             .body(
                 CollectionUtils.toMultiValueMap(
-                    Map.of(
-                        "accessToken", Collections.singletonList(accessToken),
-                        "deviceSerial", Collections.singletonList(deviceSerial)
-                    )
+                    mapOf
                 )
             );
         ResponseEntity<BaseResponse<VideoAddress>> response = REST_TEMPLATE.exchange(requestEntity, new ParameterizedTypeReference<BaseResponse<VideoAddress>>() {
@@ -118,7 +118,7 @@ public class MonitorUtils {
             throw new ServiceException("获取播放地址失败：" + response.toString());
         }
         if (!"200".equals(body.getCode())) {
-            throw new ServiceException("获取播放地址失败：" + response.toString());
+            throw new ServiceException("获取播放地址失败：" + body.getMsg());
         }
         return body.getData();
     }
@@ -134,13 +134,13 @@ public class MonitorUtils {
     private static final List<Integer> SPEEDS = Arrays.asList(0, 1, 2);
 
     /**
-     * 云台控制
+     * 开启云台控制
      *
      * @param deviceSerial 摄像头序列号
      * @param direction    方向：操作命令：0-上，1-下，2-左，3-右，4-左上，5-左下，6-右上，7-右下，8-放大，9-缩小，10-近焦距，11-远焦距，16-自动控制
      * @param speed        云台速度：0-慢，1-适中，2-快，海康设备参数不可为0
      */
-    public static String controlCamera(String deviceSerial, int direction, int speed) {
+    public static String startControlCamera(String deviceSerial, int direction, int speed) {
         try {
             if (!DIRECTIONS.contains(direction)) {
                 throw new ServiceException("方向不存在");
@@ -148,7 +148,7 @@ public class MonitorUtils {
             if (!SPEEDS.contains(speed)) {
                 throw new ServiceException("云台速度不存在");
             }
-            return controlCamera(getAccessTokenFromRedis(), deviceSerial, 1, direction, speed);
+            return startControlCamera(getAccessTokenFromRedis(), deviceSerial, 1, direction, speed);
         } catch (Exception e) {
             log.error("控制摄像头失败：" + e.getMessage());
             throw new ServiceException("控制摄像头失败");
@@ -158,19 +158,19 @@ public class MonitorUtils {
     /**
      * 控制摄像头
      */
-    private static String controlCamera(String accessToken, String deviceSerial, int channelNo, int direction, int speed) {
+    private static String startControlCamera(String accessToken, String deviceSerial, int channelNo, int direction, int speed) {
+        Map<String, List<Object>> mapOf = new HashMap<>();
+        mapOf.put("accessToken", Collections.singletonList(accessToken));
+        mapOf.put("deviceSerial", Collections.singletonList(deviceSerial));
+        mapOf.put("channelNo", Collections.singletonList(channelNo));
+        mapOf.put("direction", Collections.singletonList(direction));
+        mapOf.put("speed", Collections.singletonList(speed));
         RequestEntity<Map<String, List<Object>>> requestEntity = RequestEntity
             .post("https://open.ys7.com/api/lapp/device/ptz/start")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
             .body(
                 CollectionUtils.toMultiValueMap(
-                    Map.of(
-                        "accessToken", Collections.singletonList(accessToken),
-                        "deviceSerial", Collections.singletonList(deviceSerial),
-                        "channelNo", Collections.singletonList(channelNo),
-                        "direction", Collections.singletonList(direction),
-                        "speed", Collections.singletonList(speed)
-                    )
+                    mapOf
                 )
             );
         ResponseEntity<BaseResponse<Object>> response = REST_TEMPLATE.exchange(requestEntity, new ParameterizedTypeReference<BaseResponse<Object>>() {
@@ -178,6 +178,51 @@ public class MonitorUtils {
         BaseResponse<Object> body = response.getBody();
         if (body == null) {
             throw new ServiceException("控制摄像头失败：" + response.toString());
+        }
+        if (!"200".equals(body.getCode())) {
+            throw new ServiceException("控制摄像头失败：" + body.getMsg());
+        }
+        return body.getMsg();
+    }
+
+    /**
+     * 停止云台控制
+     *
+     * @param deviceSerial 摄像头序列号
+     */
+    public static String stopControlCamera(String deviceSerial) {
+        try {
+            return stopControlCamera(getAccessTokenFromRedis(), deviceSerial, 1);
+        } catch (Exception e) {
+            log.error("控制摄像头失败：" + e.getMessage());
+            throw new ServiceException("控制摄像头失败");
+        }
+    }
+
+    /**
+     * 停止控制摄像头
+     */
+    private static String stopControlCamera(String accessToken, String deviceSerial, int channelNo) {
+        Map<String, List<Object>> mapOf = new HashMap<>();
+        mapOf.put("accessToken", Collections.singletonList(accessToken));
+        mapOf.put("deviceSerial", Collections.singletonList(deviceSerial));
+        mapOf.put("channelNo", Collections.singletonList(channelNo));
+        RequestEntity<Map<String, List<Object>>> requestEntity = RequestEntity
+            .post("https://open.ys7.com/api/lapp/device/ptz/stop")
+            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+            .body(
+                CollectionUtils.toMultiValueMap(
+                    mapOf
+                )
+            );
+        ResponseEntity<BaseResponse<Object>> response = REST_TEMPLATE.exchange(requestEntity, new ParameterizedTypeReference<BaseResponse<Object>>() {
+        });
+        BaseResponse<Object> body = response.getBody();
+        if (body == null) {
+            throw new ServiceException("停止控制摄像头失败：" + response.toString());
+        }
+        if (!"200".equals(body.getCode())) {
+            throw new ServiceException("停止控制摄像头失败：" + body.getMsg());
         }
         return body.getMsg();
     }

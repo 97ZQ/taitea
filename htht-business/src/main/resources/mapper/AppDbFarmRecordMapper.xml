@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htht.business.app.mapper.AppDbFarmRecordMapper">
+
+    <resultMap id="BaseResultMap" type="com.htht.business.app.domain.AppDbFarmRecord">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="teaGardenId" column="tea_garden_id" jdbcType="BIGINT"/>
+            <result property="farmingType" column="farming_type" jdbcType="VARCHAR"/>
+            <result property="workContent" column="work_content" jdbcType="VARCHAR"/>
+            <result property="workName" column="work_name" jdbcType="VARCHAR"/>
+            <result property="workDate" column="work_date" jdbcType="DATE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,tea_garden_id,farming_type,
+        work_content,work_name,work_date
+    </sql>
+</mapper>

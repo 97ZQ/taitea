@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htht.business.app.mapper.AppDbNoticeEventMapper">
+
+    <resultMap id="BaseResultMap" type="com.htht.business.app.domain.AppDbNoticeEvent">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="noticeContent" column="notice_content" jdbcType="VARCHAR"/>
+            <result property="noticeTitle" column="notice_title" jdbcType="VARCHAR"/>
+            <result property="noticeDate" column="notice_date" jdbcType="DATE"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,notice_content,notice_title,
+        notice_date,type
+    </sql>
+</mapper>

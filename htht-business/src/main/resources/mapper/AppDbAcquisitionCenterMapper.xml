@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htht.business.app.mapper.AppDbAcquisitionCenterMapper">
+
+    <resultMap id="BaseResultMap" type="com.htht.business.app.domain.AppDbAcquisitionCenter">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="captureTitle" column="capture_title" jdbcType="VARCHAR"/>
+            <result property="quantityPurchased" column="quantity_purchased" jdbcType="VARCHAR"/>
+            <result property="cutOffTime" column="cut_off_time" jdbcType="DATE"/>
+            <result property="attachments" column="attachments" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,capture_title,quantity_purchased,
+        cut_off_time,attachments
+    </sql>
+</mapper>

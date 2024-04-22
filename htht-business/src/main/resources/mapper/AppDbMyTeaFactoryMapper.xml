@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htht.business.app.mapper.AppDbMyTeaFactoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.htht.business.app.domain.AppDbMyTeaFactory">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="teaFactoryChargeId" column="tea_factory_charge_id" jdbcType="BIGINT"/>
+            <result property="teaFactoryChargeName" column="tea_factory_charge_name" jdbcType="VARCHAR"/>
+            <result property="teaFactoryChargePhone" column="tea_factory_charge_phone" jdbcType="VARCHAR"/>
+            <result property="teaFactoryName" column="tea_factory_name" jdbcType="VARCHAR"/>
+            <result property="teaFactoryIntroduce" column="tea_factory_introduce" jdbcType="VARCHAR"/>
+            <result property="carouselMapOne" column="carousel_map_one" jdbcType="VARCHAR"/>
+            <result property="carouselMapTwo" column="carousel_map_two" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,tea_factory_charge_id,tea_factory_charge_name,
+        tea_factory_charge_phone,tea_factory_name,tea_factory_introduce,
+        carousel_map_one,carousel_map_two
+    </sql>
+</mapper>

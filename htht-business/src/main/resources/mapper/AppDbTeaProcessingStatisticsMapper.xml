@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htht.business.app.mapper.AppDbTeaProcessingStatisticsMapper">
+
+    <resultMap id="BaseResultMap" type="com.htht.business.app.domain.AppDbTeaProcessingStatistics">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="teaFactoryId" column="tea_factory_id" jdbcType="BIGINT"/>
+            <result property="processingDate" column="processing_date" jdbcType="DATE"/>
+            <result property="processingTeaLevel" column="processing_tea_level" jdbcType="VARCHAR"/>
+            <result property="teaGreenWeight" column="tea_green_weight" jdbcType="VARCHAR"/>
+            <result property="teaOutputType" column="tea_output_type" jdbcType="VARCHAR"/>
+            <result property="teaOutputQuantity" column="tea_output_quantity" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,tea_factory_id,processing_date,
+        processing_tea_level,tea_green_weight,tea_output_type,
+        tea_output_quantity
+    </sql>
+</mapper>
