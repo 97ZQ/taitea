@@ -165,13 +165,17 @@ public class AgriculturalManagementController {
                 .list();
             if (processingTeaLevel == 0){
                 //历史一级茶青总量
-                double firstLevelGreenTea = list.stream().mapToDouble(AppDbBrowishGreenStatistics::getFirstLevelAll).sum();
+                double firstLevelGreenTea = list.stream()
+                    .filter(statistics -> statistics.getFirstLevelAll() != null)
+                    .mapToDouble(AppDbBrowishGreenStatistics::getFirstLevelAll).sum();
                 //一级茶青使用总量
                 List<AppDbUseGreenTea> firstLevel = appDbUseGreenTeaService.lambdaQuery()
                     .eq(AppDbUseGreenTea::getTeaFactoryId, teaFactoryId)
                     .eq(AppDbUseGreenTea::getTeaId, teaId)
                     .list();
-                double firstLevelCount = firstLevel.stream().mapToDouble(AppDbUseGreenTea::getUseFirstLevelGreenTea).sum();
+                double firstLevelCount = firstLevel.stream()
+                    .filter(statistics -> statistics.getUseFirstLevelGreenTea() != null)
+                    .mapToDouble(AppDbUseGreenTea::getUseFirstLevelGreenTea).sum();
                 double firstLevelFinalGreenTea;
                 firstLevelFinalGreenTea = firstLevelGreenTea - firstLevelCount;
 
@@ -195,13 +199,17 @@ public class AgriculturalManagementController {
                 }
                 //二级茶青总量
             }else {
-                double secondLevelGreenTea = list.stream().mapToDouble(AppDbBrowishGreenStatistics::getSecondLevelAll).sum();
+                double secondLevelGreenTea = list.stream()
+                    .filter(statistics -> statistics.getFirstLevelAll() != null)
+                    .mapToDouble(AppDbBrowishGreenStatistics::getSecondLevelAll).sum();
                 //二级茶青使用总量
                 List<AppDbUseGreenTea> secondLevel = appDbUseGreenTeaService.lambdaQuery()
                     .eq(AppDbUseGreenTea::getTeaFactoryId, teaFactoryId)
                     .eq(AppDbUseGreenTea::getTeaId, teaId)
                     .list();
-                double secondLevelCount = secondLevel.stream().mapToDouble(AppDbUseGreenTea::getUseSecondLevelGreenTea).sum();
+                double secondLevelCount = secondLevel.stream()
+                    .filter(statistics -> statistics.getUseSecondLevelGreenTea() != null)
+                    .mapToDouble(AppDbUseGreenTea::getUseSecondLevelGreenTea).sum();
                 double secondLevelFinalGreenTea;
                 secondLevelFinalGreenTea = secondLevelGreenTea - secondLevelCount;
 
@@ -234,7 +242,9 @@ public class AgriculturalManagementController {
                 .eq(AppDbTeaProcessingStatistics::getProcessingTeaLevel, 0)
                 .eq(AppDbTeaProcessingStatistics::getTeaOutputType, 0)
                 .list();
-            double firstLevelGreenTeaCount = firstLevelGreenTea.stream().mapToDouble(AppDbTeaProcessingStatistics::getTeaOutputQuantity).sum();
+            double firstLevelGreenTeaCount = firstLevelGreenTea.stream()
+                .filter(statistics -> statistics.getTeaOutputQuantity() != null)
+                .mapToDouble(AppDbTeaProcessingStatistics::getTeaOutputQuantity).sum();
 
             //一级红毛茶
             List<AppDbTeaProcessingStatistics> firstLevelRedTea = appDbTeaProcessingStatisticsService.lambdaQuery()
@@ -243,7 +253,9 @@ public class AgriculturalManagementController {
                 .eq(AppDbTeaProcessingStatistics::getProcessingTeaLevel, 0)
                 .eq(AppDbTeaProcessingStatistics::getTeaOutputType, 1)
                 .list();
-            double firstLevelRedTeaCount = firstLevelRedTea.stream().mapToDouble(AppDbTeaProcessingStatistics::getTeaOutputQuantity).sum();
+            double firstLevelRedTeaCount = firstLevelRedTea.stream()
+                .filter(statistics -> statistics.getTeaOutputQuantity() != null)
+                .mapToDouble(AppDbTeaProcessingStatistics::getTeaOutputQuantity).sum();
 
             //二级绿毛茶
             List<AppDbTeaProcessingStatistics> secondLevelGreenTea = appDbTeaProcessingStatisticsService.lambdaQuery()
@@ -252,7 +264,9 @@ public class AgriculturalManagementController {
                 .eq(AppDbTeaProcessingStatistics::getProcessingTeaLevel, 1)
                 .eq(AppDbTeaProcessingStatistics::getTeaOutputType, 0)
                 .list();
-            double secondLevelGreenTeaCount = secondLevelGreenTea.stream().mapToDouble(AppDbTeaProcessingStatistics::getTeaOutputQuantity).sum();
+            double secondLevelGreenTeaCount = secondLevelGreenTea.stream()
+                .filter(statistics -> statistics.getTeaOutputQuantity() != null)
+                .mapToDouble(AppDbTeaProcessingStatistics::getTeaOutputQuantity).sum();
 
             //二级红毛茶
             List<AppDbTeaProcessingStatistics> secondLevelRedTea = appDbTeaProcessingStatisticsService.lambdaQuery()
@@ -261,7 +275,9 @@ public class AgriculturalManagementController {
                 .eq(AppDbTeaProcessingStatistics::getProcessingTeaLevel, 1)
                 .eq(AppDbTeaProcessingStatistics::getTeaOutputType, 1)
                 .list();
-            double secondLevelRedTeaCount = secondLevelRedTea.stream().mapToDouble(AppDbTeaProcessingStatistics::getTeaOutputQuantity).sum();
+            double secondLevelRedTeaCount = secondLevelRedTea.stream()
+                .filter(statistics -> statistics.getTeaOutputQuantity() != null)
+                .mapToDouble(AppDbTeaProcessingStatistics::getTeaOutputQuantity).sum();
 
             //查出毛茶总量后在查询使用毛茶总量
             List<AppDbUseRawTea> appDbUseRawTeaList = appDbUseRawTeaService.lambdaQuery()

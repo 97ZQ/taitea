@@ -182,8 +182,15 @@ public class BrowishGreenPersonController {
             List<AppDbBrowishGreenStatistics> list = appDbBrowishGreenStatisticsService.lambdaQuery()
                 .eq(AppDbBrowishGreenStatistics::getTeaGardenId, insertBrowishGreenPersonDTO.getTeaId())
                 .list();
-            double firstGreenTea = list.stream().mapToDouble(AppDbBrowishGreenStatistics::getFirstLevelAll).sum();
-            double secondGreenTea = list.stream().mapToDouble(AppDbBrowishGreenStatistics::getSecondLevelAll).sum();
+
+            double firstGreenTea = list.stream()
+                .filter(statistics -> statistics.getFirstLevelAll() != null)
+                .mapToDouble(AppDbBrowishGreenStatistics::getFirstLevelAll)
+                .sum();
+            double secondGreenTea = list.stream()
+                .filter(statistics -> statistics.getSecondLevelAll() != null)
+                .mapToDouble(AppDbBrowishGreenStatistics::getSecondLevelAll)
+                .sum();
             Long count = appDbAllGreenTeaStatisticsService.lambdaQuery()
                 .eq(AppDbAllGreenTeaStatistics::getTeaId, insertBrowishGreenPersonDTO.getTeaId())
                 .count();

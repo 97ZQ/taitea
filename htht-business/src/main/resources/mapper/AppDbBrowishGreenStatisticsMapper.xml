@@ -19,6 +19,6 @@
     <select id="getYearAndMonth" resultType="com.htht.business.app.domain.AppDbBrowishGreenStatistics">
         select * from app_db_browish_green_statistics
         where YEAR(time) = #{getYear} and MONTH(time) =  #{getMonth}
-        and tea_garden_id = #{teaId}
+        and tea_garden_id = #{teaId} order by time desc
     </select>
 </mapper>

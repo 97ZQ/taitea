@@ -10,5 +10,5 @@ import com.htht.common.core.page.TableDataInfo;
  */
 public interface AppDbTeaGrowerService extends IService<AppDbTeaGrower> {
 
-    TableDataInfo<AppDbTeaGrower> selectList(Long teaId, PageQuery pageQuery);
+    TableDataInfo<AppDbTeaGrower> selectList(Long teaId, String teaGrowerName, PageQuery pageQuery);
 }

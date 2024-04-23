@@ -25,13 +25,24 @@ public class TeaGrowerController {
 
     private final AppDbTeaGrowerService appDbTeaGrowerService;
 
+
+//    @GetMapping("/teaGrowerList")
+//    @SaIgnore
+//    public TableDataInfo<AppDbTeaGrower> teaGrowerList(Long teaId, PageQuery pageQuery){
+//        return appDbTeaGrowerService.selectList(teaId, pageQuery);
+//    }
+
     /**
      * 查询茶农列表
+     * @param teaId id
+     * @param teaGrowerName 茶农姓名
+     * @param pageQuery
+     * @return
      */
     @GetMapping("/teaGrowerList")
     @SaIgnore
-    public TableDataInfo<AppDbTeaGrower> teaGrowerList(Long teaId, PageQuery pageQuery){
-        return appDbTeaGrowerService.selectList(teaId, pageQuery);
+    public TableDataInfo<AppDbTeaGrower> teaGrowerList(Long teaId, String teaGrowerName, PageQuery pageQuery){
+        return appDbTeaGrowerService.selectList(teaId,teaGrowerName, pageQuery);
     }
 
     /**

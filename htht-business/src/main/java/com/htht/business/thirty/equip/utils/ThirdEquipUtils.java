@@ -154,6 +154,25 @@ public class ThirdEquipUtils {
         return body.getData();
     }
 
+
+//    public static SoilDevice getSoilDeviceData(long deviceId) {
+//        String uriString = UriComponentsBuilder
+//            .fromHttpUrl("http://www.farm-iot.cn:8089/api/Soil/DevStatus")
+//            .queryParam("AuthCode", getAuthCode())
+//            .queryParam("deviceId", deviceId)
+//            .toUriString();
+//        RequestEntity<Void> requestEntity = RequestEntity
+//            .get(uriString)
+//            .build();
+//        ResponseEntity<CommonResponse<SoilDevice>> response = REST_TEMPLATE.exchange(requestEntity, new ParameterizedTypeReference<CommonResponse<SoilDevice>>() {
+//        });
+//        CommonResponse<SoilDevice> body = response.getBody();
+//        if (body == null) {
+//            throw new ServiceException("获取管式土壤墒情仪数据失败：" + response.toString());
+//        }
+//        return body.getData();
+//    }
+
     /**
      * 获取虫情运行记录
      */
