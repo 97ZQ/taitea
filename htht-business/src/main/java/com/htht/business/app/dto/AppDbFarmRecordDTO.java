@@ -5,6 +5,7 @@ import com.htht.common.core.domain.PageQuery;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @projectName: htht
@@ -27,6 +28,7 @@ public class AppDbFarmRecordDTO extends PageQuery {
      */
     private Long teaGardenId;
 
+
     /**
      * 农事类型(0 施肥 1 浇水 2 松土 3其他)
      */
@@ -46,4 +48,9 @@ public class AppDbFarmRecordDTO extends PageQuery {
      * 农事记录日期
      */
     private Date workDate;
+
+    /**
+     * 静态文件List
+     */
+    private List<PicDTO> staticPathList;
 }

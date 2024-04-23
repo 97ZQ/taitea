@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface AppDbFarmRecordMapper extends BaseMapper<AppDbFarmRecord> {
 
+    Long insertReturnId(AppDbFarmRecord appDbFarmRecord);
 }
 
 

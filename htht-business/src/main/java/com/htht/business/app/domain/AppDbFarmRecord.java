@@ -18,7 +18,7 @@ public class AppDbFarmRecord implements Serializable {
     /**
      * id
      */
-    @TableId
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     /**

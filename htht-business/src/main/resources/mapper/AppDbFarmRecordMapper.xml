@@ -17,4 +17,8 @@
         id,tea_garden_id,farming_type,
         work_content,work_name,work_date
     </sql>
+    <insert id="insertReturnId"  useGeneratedKeys="true" keyProperty="id">
+        insert into app_db_farm_record(id,tea_garden_id,farming_type,work_content,work_name,work_date)
+        VALUES (#{id},#{teaGardenId},#{farmingType},#{workContent},#{workName},#{workDate})
+    </insert>
 </mapper>
