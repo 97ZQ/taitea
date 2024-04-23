@@ -35,12 +35,19 @@ public class AppDbBrowishGreenPerson implements Serializable {
      * 一级茶青(斤)
      */
     private Double browishGreenFirstLevel;
-
+    /**
+     * 一级茶青价格(元/斤)
+     */
+    private Double browishGreenFirstPrice;
     /**
      * 二级茶青(斤)
      */
     private Double browishGreenSecondLevel;
 
+    /**
+     * 二级茶青价格(元/斤)
+     */
+    private Double browishGreenSecondPrice;
     /**
      * 收青日期
      */
@@ -75,7 +82,9 @@ public class AppDbBrowishGreenPerson implements Serializable {
             && (this.getBrowishGreenStatisticsId() == null ? other.getBrowishGreenStatisticsId() == null : this.getBrowishGreenStatisticsId().equals(other.getBrowishGreenStatisticsId()))
             && (this.getBrowishGreenStatisticsName() == null ? other.getBrowishGreenStatisticsName() == null : this.getBrowishGreenStatisticsName().equals(other.getBrowishGreenStatisticsName()))
             && (this.getBrowishGreenFirstLevel() == null ? other.getBrowishGreenFirstLevel() == null : this.getBrowishGreenFirstLevel().equals(other.getBrowishGreenFirstLevel()))
+            && (this.getBrowishGreenFirstPrice() == null ? other.getBrowishGreenFirstPrice() == null : this.getBrowishGreenFirstPrice().equals(other.getBrowishGreenFirstPrice()))
             && (this.getBrowishGreenSecondLevel() == null ? other.getBrowishGreenSecondLevel() == null : this.getBrowishGreenSecondLevel().equals(other.getBrowishGreenSecondLevel()))
+            && (this.getBrowishGreenSecondPrice() == null ? other.getBrowishGreenSecondPrice() == null : this.getBrowishGreenSecondPrice().equals(other.getBrowishGreenSecondPrice()))
             && (this.getBrowishGreenStatisticsDate() == null ? other.getBrowishGreenStatisticsDate() == null : this.getBrowishGreenStatisticsDate().equals(other.getBrowishGreenStatisticsDate()));
     }
 
@@ -87,7 +96,9 @@ public class AppDbBrowishGreenPerson implements Serializable {
         result = prime * result + ((getBrowishGreenStatisticsId() == null) ? 0 : getBrowishGreenStatisticsId().hashCode());
         result = prime * result + ((getBrowishGreenStatisticsName() == null) ? 0 : getBrowishGreenStatisticsName().hashCode());
         result = prime * result + ((getBrowishGreenFirstLevel() == null) ? 0 : getBrowishGreenFirstLevel().hashCode());
+        result = prime * result + ((getBrowishGreenFirstPrice() == null) ? 0 : getBrowishGreenFirstPrice().hashCode());
         result = prime * result + ((getBrowishGreenSecondLevel() == null) ? 0 : getBrowishGreenSecondLevel().hashCode());
+        result = prime * result + ((getBrowishGreenSecondPrice() == null) ? 0 : getBrowishGreenSecondPrice().hashCode());
         result = prime * result + ((getBrowishGreenStatisticsDate() == null) ? 0 : getBrowishGreenStatisticsDate().hashCode());
         return result;
     }
@@ -102,7 +113,9 @@ public class AppDbBrowishGreenPerson implements Serializable {
         sb.append(", browishGreenStatisticsId=").append(browishGreenStatisticsId);
         sb.append(", browishGreenStatisticsName=").append(browishGreenStatisticsName);
         sb.append(", browishGreenFirstLevel=").append(browishGreenFirstLevel);
+        sb.append(", browishGreenFirstPrice=").append(browishGreenFirstPrice);
         sb.append(", browishGreenSecondLevel=").append(browishGreenSecondLevel);
+        sb.append(", browishGreenSecondPrice=").append(browishGreenSecondPrice);
         sb.append(", browishGreenStatisticsDate=").append(browishGreenStatisticsDate);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

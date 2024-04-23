@@ -81,7 +81,9 @@ public class BrowishGreenPersonController {
             appDbBrowishGreenPerson.setBrowishGreenStatisticsDate(appDbBrowishGreenPerson1.getBrowishGreenStatisticsDate());
             appDbBrowishGreenPerson.setTeaId(appDbBrowishGreenPerson1.getTeaId());
             appDbBrowishGreenPerson.setBrowishGreenFirstLevel(appDbBrowishGreenPerson1.getBrowishGreenFirstLevel());
+            appDbBrowishGreenPerson.setBrowishGreenFirstPrice(appDbBrowishGreenPerson1.getBrowishGreenFirstPrice());
             appDbBrowishGreenPerson.setBrowishGreenSecondLevel(appDbBrowishGreenPerson1.getBrowishGreenSecondLevel());
+            appDbBrowishGreenPerson.setBrowishGreenSecondPrice(appDbBrowishGreenPerson1.getBrowishGreenSecondPrice());
             appDbBrowishGreenPerson.setTeaFarmerId(appDbBrowishGreenPerson1.getTeaFarmerId());
             appDbBrowishGreenPerson.setBrowishGreenStatisticsName(appDbBrowishGreenPerson1.getBrowishGreenStatisticsName());
             appDbBrowishGreenPerson.setId(appDbBrowishGreenPerson1.getId());
